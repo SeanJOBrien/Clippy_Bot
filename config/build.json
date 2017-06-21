@@ -1,7 +1,0 @@
-{
-  "discord": {
-    "apikey": "CLIENT_ID",
-    "secret": "CLIENT_SECRET",
-    "token": "APP_USER_TOKEN"
-  }
-}
