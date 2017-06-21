@@ -1,29 +1,32 @@
 const Discord = require("discord.js");
 const clippy = new Discord.Client();
+var discordApp = require('./config/build').discord;
 
 
 /* Variables for common use */
 var lmgtfy = 'http://lmgtfy.com/?q=';
 
-clippy.login("MzI2ODEwMDYyMTA4NjIyODU5.DCsTvg.EDvAy27_OmF9x4l3rZSQLIG8jqE");
+clippy.login(discordApp.token);
 
 clippy.on("ready", () => {
   console.log("I am ready!");
 });
 
 function messageBus(msg) {
-
-  msg.content = msg.content.toLowerCase();
-  if (msg.content.startsWith("paula")) {
-    msg.channel.send("#SpaceWife");
-  }
-
-  if(msg.content.indexOf('?') !== -1 && msg.content.indexOf('http') === -1){
-    var query = msg.content.replace(/ /g, '+');
-    msg.channel.send(lmgtfy+query);
-  }
-  if(msg.isMentioned(clippy.user)){
-    msg.channel.send("Yes?");
+  if(msg.author.id != clippy.user.id) {
+    msg.content = msg.content.toLowerCase();
+    if (msg.content.indexOf('clippy') !== -1) {
+      msg.channel.send("Yes?");
+    }
+    if(msg.isMentioned(clippy.user)){
+      msg.content = msg.content.replace('<@'+clippy.user.id+'>','').trim();;
+      if(msg.content.indexOf('?') !== -1){
+        var query = msg.content.replace(/ /g, '+');
+       msg.channel.send(lmgtfy+query);
+      } else {
+        msg.channel.send("Please ask me a question.");
+      }
+    }
   }
 };
 
