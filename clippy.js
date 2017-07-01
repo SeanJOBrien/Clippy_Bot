@@ -2,10 +2,8 @@ const Discord = require("discord.js");
 const clippy = new Discord.Client();
 var discordApp = require('./config/build').discord;
 
+var cmd = require('./private/cmd_index')
 
-/* Variables for common use */
-var lmgtfy = 'http://lmgtfy.com/?q=';
-var google = 'http://www.google.com/search?q=';
 
 clippy.login(discordApp.token);
 
@@ -20,13 +18,8 @@ function messageBus(msg) {
       msg.channel.send("Yes?");
     }
     if(msg.isMentioned(clippy.user)){
-      msg.content = msg.content.replace('<@'+clippy.user.id+'>','').trim();;
-      if(msg.content.indexOf('?') !== -1){
-        var query = msg.content.replace(/ /g, '+');
-       msg.channel.send(google+query);
-      } else {
-        msg.channel.send("Please ask me a question.");
-      }
+      msg.content = msg.content.replace('<@'+clippy.user.id+'>','').trim();
+      cmd.run(clippy, msg);
     }
   }
 };
