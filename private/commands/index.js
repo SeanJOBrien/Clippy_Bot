@@ -1,8 +1,10 @@
 var google = require('./cmds/google');
-
-
+var weather = require('./cmds/weather');
+var admin = require('./cmds/admin');
 
 module.exports = {
-  google: google.search,
-  lmgtfy: google.lmgtfy
+  search: google.search,
+  lmgtfy: google.lmgtfy,
+  forcast: weather.forcast,
+  exit: admin.exit
 };

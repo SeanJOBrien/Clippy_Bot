@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const clippy = new Discord.Client();
-var discordApp = require('./config/build').discord;
+var discordApp = require('./config').discord;
 
 var cmd = require('./private/cmd_index')
 
