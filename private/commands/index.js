@@ -1,6 +1,6 @@
-var google = require('./cmds/google');
-var weather = require('./cmds/weather');
-var admin = require('./cmds/admin');
+const google = require('./cmds/google');
+const weather = require('./cmds/weather');
+const admin = require('./cmds/admin');
 
 module.exports = {
   search: google.search,
